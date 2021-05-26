@@ -1,43 +1,39 @@
-/* Ejercicio 1
-Dado el siguiente método:
-public int dividir (int a, int b){
-return a/b;
-}
-a. Realizar pruebas con diferentes valores para “a” y “b”.
-b. ¿Qué pasa cuando “b” es 0 (cero)?
-	Al intentar dividir por cero surge el siguiente error:
-	Exception in thread "main" java.lang.ArithmeticException: / by zero
-	at p05ej01.Main.dividir(Main.java:18)
-	at p05ej01.Main.main(Main.java:25)
-c. Modificar el método para que, cuando “b” sea 0 (cero), el valor de retorno sea 0 (cero).
-d. ¿Cuál sería la excepción más adecuada para utilizar en este caso?
-	Sería una excepción aritmética.
-Nota: en el inciso d, capturar la excepción con un bloque “try – catch”. */
+/*
+ Dado el siguiente fragmento de código fuente JAVA:
+ a. ¿Qué retorna su ejecución?
+ 	Retorna: C1
+ 			 C2
+ b. ¿Qué son los Stream?
+ 	La API Stream se utiliza para procesar colecciones de objetos. 
+ 	Un stream es una secuencia de objetos que admite varios métodos que se pueden hacer pipeline para producir 
+ 	el resultado deseado.
+ c. Brindar otro ejemplo de uso de los mismos.
+ 	collect: El método colect se utiliza para devolver el resultado de las operaciones 
+ 	intermedias realizadas en el stream.
+ 	List number = Arrays.asList(2,3,4,5,3);
+	Set square = number.stream().map(x->x*x).collect(Collectors.toSet());
+	reduce: se utiliza para reducir los elementos de una secuencia a un solo valor.
+	El método  toma un BinaryOperator como parámetro.
+	List number = Arrays.asList(2,3,4,5);
+	int even = number.stream().filter(x->x%2==0).reduce(0,(ans,i)-> ans+i);
+	A la variable ans se le asigna 0 como valor inicial y se le agrega i.
+ */
 
-package p05ej01;
+package p05ej04;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class Main {
-	
-	public static int dividir (int a, int b){
-		//if (b == 0)
-		//	return 0;
-		// else
-		return a/b;
-		}
 
 	public static void main(String[] args) {
-		int a = 5;
-		int b = 0;
-		
-		//System.out.println("El resultado de dividir " + a + " y " + b + " es: " + dividir (a, b));
-		System.out.println("Prueba TRY - CATCH");
-		
-		try{
-	          System.out.println("El resultado es: " + dividir (a, b));
-	      } 
-	      catch (ArithmeticException e) {
-	         System.out.println ("No se puede dividir por cero " + e);
-	      }
+		List<String> myList = Arrays.asList("a1", "b1", "c2", "c1");
+		myList.stream()
+		.filter(s -> s.startsWith("c"))
+		.map(String::toUpperCase)
+		.sorted()
+		.forEach(System.out::println);
+
 	}
 
 }
